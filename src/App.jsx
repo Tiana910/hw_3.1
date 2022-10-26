@@ -13,11 +13,10 @@ export const App = () => {
       messages[messages.length - 1].author === AUTHOR.user
     ) {
       const timeout = setTimeout(() => {
-        setMessages([
-          ...messages,
+        setMessages([ ...messages,
           {
             author: AUTHOR.bot,
-            value: ' Wait answer',
+            value: 'I am BOT',
           }
         ]);
       }, 1500);
