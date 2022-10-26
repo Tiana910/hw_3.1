@@ -40,9 +40,13 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-jsx": "^7.18.6",
-    "@babel/preset-react": "^7.18.6"
+    "@babel/preset-react": "^7.18.6",
+    "react-test-renderer": "^18.2.0"
   },
-  "presets": ["@babel/preset-react" ],
-  "plugins": ["@babel/plugin-syntax-jsx"]
-
+  "presets": [
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-jsx"
+  ]
 }
