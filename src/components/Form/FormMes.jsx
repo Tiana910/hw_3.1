@@ -1,28 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { Button } from "./components";
 import './formMes.module.css';
 import TextField from '@mui/material/TextField';
+import { AUTHOR } from "../constants";
+import { useParams } from "react-router";
 
 
-export const FormMes = ({ addMessage }) => {
-    const [value, setValue] = useState('')
 
-    const handlSubmit = (e) => {
-        e.preventDefault();
-        addMessage(value);
+export const FormMes = memo(({ addMessage }) => {
+    const [value, setValue] = useState('');
+    const { chatId } = useParams()
+
+
+    const handlSubmit = (ev) => {
+        ev.preventDefault();
+        if (chatId) {
+            addMessage(chatId, {
+                author: AUTHOR.USER,
+                value,
+            });
+        }
         setValue('');
-    }
+    };
 
     return (
         <form className="form" onSubmit={handlSubmit}>
             <TextField
-                type="text" value={value}
+                value={value}
+                type="text"
                 onChange={(e) => setValue(e.target.value)}
-                inputProps={{'data-testid': 'input'}} />
-            {/* <Button lable="send" disabled={!value}/> */}
-            <Button lable='send' disabled={!value} data-testid="button" type="submit"/>
-            {/* <button lable="send" disabled={!value}>send</button> */}
-
+                inputProps={{ 'data-testid': 'input' }} />
+            <Button
+                lable='send'
+                disabled={!value}
+                data-testid="button"
+                type="submit"
+                render={(lable) => <div>{lable}</div>}>
+                    send
+            </Button>
         </form>
     );
-}
+});

@@ -1,14 +1,19 @@
 import { Button } from './Button';
 import { render, screen, waitFor } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
+// import { userEvent } from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 describe('Button', () => {
-       // it('render with snapshot', ()=> {
-    //     const {asFragment} = render(<Button lable="test" />);
+    it('render component', () => {
+        render(<Button lable="test" />);
 
-    //     expect(asFragment()).toMatchSnapshot()
-    // })
+    });
+
+    it('render with snapshot', ()=> {
+        const {asFragment} = render(<Button lable="test" />);
+
+        expect(asFragment()).toMatchSnapshot()
+    })
 
     it('render component with text', () => {
         render(<Button lable="test" />)
@@ -57,9 +62,9 @@ describe('Button', () => {
         // await screen.findByText('clicked twice', {timeout:1000});
 
     });
-    it('test exampel', async () => {
+    it ('test exampel', async ()=> {
         const onChange = jest.fn();
-        render(<input type="checkbox" onChange={onChange} />);
+        render (<input  type="checkbox" onChange={onChange}/>);
 
         const checkbox = screen.getByRole('checkbox');
 
@@ -67,4 +72,4 @@ describe('Button', () => {
         expect(onChange).toHaveBeenCalledTimes(2);
         expect(checkbox).not.toBeChecked();
     });
-});
+}) ;
